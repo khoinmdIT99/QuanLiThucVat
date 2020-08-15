@@ -1,0 +1,14 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/Content/css/new.css" rel="stylesheet" />
+<div class="container">
+    <h3 name="title">Tin tức và sự kiện</h3>
+    <div class="partial-view" id="PhanTrang">
+        @Html.Partial("~/Views/TinTuc/_PartialNew.cshtml")
+    </div>
+</div>
+
+

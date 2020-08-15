@@ -1,0 +1,135 @@
+﻿
+@{
+    ViewBag.Title = "View";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model QuanLiThucVat.Models.ThucVatViewModel
+@{
+    List<QuanLiThucVat.Models.ThucVatViewModel> ListSameGrowth = ViewBag.ListSameGrowth;
+    List<QuanLiThucVat.Models.ThucVatViewModel> ListSameEconomy = ViewBag.ListSameEconomy;
+
+}
+<link href="~/Content/css/detail.css" rel="stylesheet" />
+<script src="~/Content/js/detai.js"></script>
+<script src="~/Content/js/flexisel.js"></script>
+
+
+<div class="containers">
+    <div class="col-md-9 detail">
+        <div class="col-md-6 image-view">
+            <img src="@Model.DuongDanHInhAnh" />
+
+        </div>
+        <div class="col-ms-6 infor">
+            <ul>
+
+                <li>Tên Việt Nam:<span name="nameVN">@Model.TenVietNam</span></li>
+                <li>Tên Latinh:<span name="nameEN">@Model.TenLaTinh</span></li>
+                <li>Họ:<span>@Model.TenHo</span></li>
+                <li>Bộ:<span>@Model.TenBo</span></li>
+                <li>Khả năng sinh trưởng:<span>@Model.KhaNangSinhTruong</span></li>
+                <li>Khả năng tái sinh:<span>@Model.KhaNangTaiSinh</span></li>
+                <li>Giá trị kinh tế:<span>@Model.GiaTriKinhTe</span></li>
+                <li>
+                    Mô tả chi tiết: <span>@Model.MoTa</span>
+                    <p data-toggle="modal" data-target="#myModal-detail" name="view-more"> Xem thêm</p>
+
+                </li>
+
+
+            </ul>
+        </div>
+    </div>
+    <div class="col-md-3 list-item-orther">
+        <h2>Các thực vật có cùng khả năng sinh trưởng</h2>
+        @foreach (var item in ListSameGrowth)
+        {
+        <div class="item-orther">
+            <a href="@Url.Action("Detail","Home",new{id=item.ID })">
+                <img src="@item.DuongDanHInhAnh" />
+            </a>
+            <a href="@Url.Action("Detail","Home",new{id=item.ID })">
+                <h4>@item.TenVietNam</h4>
+            </a>
+        </div>
+        }
+    </div>
+
+    <div class="col-md-12 list-item-orther2" >
+        <h2>Các thực vật cùng giá trị kinh tế</h2>
+        <div class="slide-show projects-grids" style="animation-name: fadeIn; animation-duration: 2s;">
+            <div class="sreen-gallery-cursual">
+                <div class="nbs-flexisel-containers">
+                    <div class="nbs-flexisel-inner">
+                        <ul id="flexiselDemo1" class="nbs-flexisel-ul" style="left: -337.25px; display: block;">
+                            @foreach (var item in ListSameEconomy)
+                            {
+                                <li class="nbs-flexisel-item" style="width: 337.25px;">
+                                    <div class="item">
+                                        <div class="projects-agile-grid-info">
+                                            <a href="@Url.Action("Detail","Home",new{id=item.ID })">
+                                                <img src="@item.DuongDanHInhAnh" />
+                                            </a>
+
+                                        </div>
+                                        <a href="@Url.Action("Detail","Home",new{id=item.ID })">
+                                            <p>@item.TenVietNam</p>
+                                        </a>
+                                    </div>
+                                </li>
+                            }
+
+
+                        </ul>@*<div class="nbs-flexisel-nav-left" style="top: 135px;"></div><div class="nbs-flexisel-nav-right" style="top: 135px;">*@
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div class="clear"></div>
+<div id="myModal-detail" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title"> Thông tin chi tiết</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal">
+                    <div class="infor">
+                        <ul>
+
+                            <li>Tên Việt Nam:<span name="nameVN">@Model.TenVietNam</span></li>
+                            <li>Tên Latinh:<span name="nameEN">@Model.TenLaTinh</span></li>
+                            <li>Họ:<span>@Model.TenHo</span></li>
+                            <li>Bộ:<span>@Model.TenBo</span></li>
+                            <li>Lượng nước trong lá:<span>@Model.LuongNuocTrongLa %</span></li>
+                            <li>Lượng nước trong vỏ:<span>@Model.LuongNuocTrongVo %</span></li>
+                            <li>Lượng tro thô trong lá:<span>@Model.LuongTroThoTrongLa %</span></li>
+                            <li>Lượng tro thô trong vỏ:<span>@Model.LuongTroThoTrongVo %</span></li>
+                            <li>Thời gian cháy trên lá:<span>@Model.ThoiGianChayTrenLa s</span></li>
+                            <li>Thời gian cháy trên vỏ:<span>@Model.ThoiGianChayTrenVo s</span></li>
+                            <li>Độ dày của lá:<span>@Model.DoDayLa mm</span></li>
+                            <li>Độ dày của vỏ:<span>@Model.DoDayVo mm</span></li>
+                            <li>Khả năng sinh trưởng:<span>@Model.KhaNangSinhTruong</span></li>
+                            <li>Khả năng tái sinh:<span>@Model.KhaNangTaiSinh</span></li>
+                            <li>Giá trị kinh tế:<span>@Model.GiaTriKinhTe</span></li>
+                            <li>
+                                Mô tả chi tiết: <span>@Model.MoTa</span>
+                            </li>
+                        </ul>
+                    </div>
+                
+                    <label for="name" class="col-sm-3 control-label"></label>
+
+
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+

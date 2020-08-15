@@ -1,0 +1,104 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+@model PagedList.IPagedList<QuanLiThucVat.Models.BangXepHangViewModel>
+@using PagedList.Mvc;
+
+@{
+    var i = (Model.PageNumber - 1) * 10;
+    var keyword = ViewBag.keyword;
+}
+<script src="~/Areas/Admin/Content/js/script/common.js"></script>
+<div class="main-page">
+    <div class="button_set_one agile_info_shadow">
+        <div class="row">
+            <div class="col-md-7">
+
+                @*<button type="button" id="btn-add" class="btn btn-primary" data-toggle="modal" data-target="#myModal-create">
+                        <i class="fa fa-plus" aria-hidden="true"></i>  Tạo thêm thực vật
+                    </button>*@
+            </div>
+            <div class="col-md-3">
+                <input type="text" class="form-control" id="search-input" placeholder="Từ khóa..." autocomplete="off" style="height:40px">
+            </div>
+            <div class="col-md-2">
+                <button id="btn-search" type="button" class="btn btn-primary btn-flat">   Tìm kiếm </button>
+            </div>
+        </div>
+
+
+
+    </div>
+    <div class="partial-view" id="PhanTrang">
+
+        <div class="tables">
+            <div class="bs-example widget-shadow" data-example-id="contextual-table">
+                <table class="table" id="tabletest">
+                    <thead>
+                        <tr>
+                            <th class="col-md-1">STT</th>
+                            <th class="col-md-1">Tên thực vật</th>
+                            <th class="col-md-1">Lượng nước trong lá</th>
+                            <th class="col-md-1">Lượng nước trong vỏ</th>
+                            <th class="col-md-1">Lượng tro thô trong lá</th>
+                            <th class="col-md-1">Lượng tro thô trong vỏ</th>
+                            <th class="col-md-1">Thời gian cháy trên lá</th>
+                            <th class="col-md-1">Thời gian cháy trên vỏ</th>
+                            <th class="col-md-1">Độ dày lá</th>
+                            <th class="col-md-1">Độ dày vỏ</th>
+                            <th class="col-md-1">Khả năng tái sinh</th>
+                            <th class="col-md-1">Khả năng sinh trưởng</th>
+                            <th class="col-md-1">Giá trị kinh tế</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr id="@item.IDThucVat">
+                                <th scope="row">@(++i)</th>
+                                <td name="nameTV">@item.TenThucVat</td>
+                                <td name="LuongNuocTrongLa">@item.LuongNuocTrongLa</td>
+                                <td name="LuongNuocTrongVo">@item.LuongNuocTrongVo</td>
+                                <td name="LuongTroThoTrongLa">@item.LuongTroThoTrongLa</td>
+                                <td name="LuongTroThoTrongVo">@item.LuongTroThoTrongVo</td>
+                                <td name="ThoiGianChayTrenLa">@item.ThoiGianChayTrenLa</td>
+                                <td name="ThoiGianChayTrenVo">@item.ThoiGianChayTrenVo</td>
+                                <td name="DoDayLa">@item.DoDayLa</td>
+                                <td name="DoDayVo">@item.DoDayVo</td>
+                                <td name="DoDayVo">@item.KhaNangTaiSinh</td>
+                                <td name="DoDayLa">@item.KhaNangSinhTruong</td>
+                                <td name="DoDayLa">@item.GiaTriKinhTe</td>
+
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        @Html.PagedListPager(Model, page => Url.Action("PhuongPhapThuHang", "BangXepHang", new { page = page, keyword = keyword }),
+                      PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(new PagedListRenderOptions()
+                      {
+                          UlElementClasses = new string[] { "pagination pagination-lg" },
+
+                          LiElementClasses = new string[] { "noselect" },
+                          MaximumPageNumbersToDisplay = 5,
+                          LinkToNextPageFormat = "›",
+                          LinkToFirstPageFormat = "«",
+                          LinkToLastPageFormat = "»",
+                          LinkToPreviousPageFormat = "‹",
+                          DisplayEllipsesWhenNotShowingAllPageNumbers = false
+                      },
+                          new AjaxOptions() { UpdateTargetId = "PhanTrang" }))
+
+
+
+
+
+    </div>
+
+</div>

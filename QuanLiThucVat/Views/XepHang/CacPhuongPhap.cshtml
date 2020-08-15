@@ -1,0 +1,46 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="~/Content/js/xephang.js"></script>
+<link href="~/Content/css/index.css" rel="stylesheet" />
+<link href="~/Content/css/ratings.css" rel="stylesheet" />
+<div class="containers">
+    <div class="row" style="margin-right:0px!important">
+        <div class="col-md-10 list-tree"> <h1>Bảng xếp hạng top 30 thực vật có khả năng phòng cháy cao</h1></div>
+        <div class="col-md-2 search">
+            <input id="search-input" type="search" class="form-control" placeholder="Nhập tên cây" />
+            <i class="fa fa-search" id="search" aria-hidden="true"></i>
+        </div>
+    </div>
+    <div class="row">
+        <form class="form-horizontal">
+            <ul class="list-group col-md-3" style="margin-top:28px;">
+                <li class="list-group-item"><label for="checkbox-inline">Chọn các tiêu chí</label></li>
+                <li class="list-group-item"><input type="checkbox" name="tc1"> Lượng nước trong lá</li>
+                <li class="list-group-item"><input type="checkbox" name="tc2"> Hàm lượng nước trong vỏ</li>
+                <li class="list-group-item"><input type="checkbox" name="tc3"> Lượng tro thô trong lá</li>
+                <li class="list-group-item"><input type="checkbox" name="tc4"> Lượng tro thô trong vỏ</li>
+                <li class="list-group-item"><input type="checkbox" name="tc5">Thời gian cháy trên lá</li>
+                <li class="list-group-item"><input type="checkbox" name="tc6"> Thời gian cháy trên vỏ</li>
+                <li class="list-group-item"><input type="checkbox" name="tc7"> Thời gian cháy trên vỏ</li>
+                <li class="list-group-item"><input type="checkbox" name="tc8">   Độ dày lá</li>
+                <li class="list-group-item"><input type="checkbox" name="tc9"> Khả năng tái sinh</li>
+                <li class="list-group-item"><input type="checkbox" name="tc10"> Khả năng sinh trưởng</li>
+                <li class="list-group-item"><input type="checkbox" name="tc11"> Giá trị kinh tế</li>
+                <li class="list-group-item"><button type="button" id="btn-apply" class="btn btn-success">Áp dụng</button></li>
+
+            </ul>
+        </form>
+
+        <div class="col-md-9">
+            <div class="partial-view" id="PhanTrang">
+                @Html.Partial("~/Views/XepHang/_PartialCacPhuongPhap.cshtml")
+            </div>
+        </div>
+    </div>
+
+
+
+
+</div>
+

@@ -1,0 +1,25 @@
+﻿.tables tbody .NewsTitle {
+    width: 10%;
+}
+.tables tbody .NewsMota {
+    width: 14%;
+}
+.tables tbody .NewsContent {
+    width: 20%;
+}
+.tables tbody tr .heightTr p {
+    display: -webkit-box;
+    height: 110px;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: border 0.5s;
+}
+.tables tbody tr:nth-child(even) {
+    background: #F5F5F5;
+}
+
+.tables tbody tr:nth-child(odd) {
+    background: #FFF;
+}

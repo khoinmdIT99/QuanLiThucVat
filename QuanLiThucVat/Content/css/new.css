@@ -1,0 +1,83 @@
+﻿h3[name=title] {
+    width: 100%;
+    font-family: Arial,Helvetica,sans-serif;
+    color: #0b7136;
+    font-size: 15pt;
+    font-weight: Bold;
+    margin-top: 12px;
+    margin-right: 10px;
+    margin-left: 10px;
+    text-align: left;
+    margin-bottom: 0px;
+    border-top-style: none;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-bottom-color: #0b7136;
+    padding: 5px 0px;
+}
+.list-new{
+    margin-bottom:20px;
+    margin:0px -20px;
+}
+    .list-new .item {
+        width: 33.33%;
+        float: left;
+        padding: 20px;
+        height: 220px;
+    }
+        .list-new .item h4 {
+            width:100%;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            font-size: 13px;
+            color: #229b3a;
+            background-color: rgb(222, 222, 222);
+            margin: 5px;
+            font-weight: bold;
+        }
+        .list-new .item h4:hover {
+           cursor:pointer;
+            color:#c31a1a;
+        }
+    .list-new .item  img{
+       width:40%;
+       height:100px;
+       float:left;
+       padding:5px;
+       
+    }
+        .list-new .item img:hover {
+            cursor: pointer;
+            opacity:0.7;
+        }
+        .list-new .item p {
+            font-family: Arial,Helvetica,sans-serif;
+            padding: 5px;
+            font-size: 12px;
+            text-align: justify;
+            background-color: rgb(239, 237, 237);
+            height:150px;
+        }
+@media screen and (min-width: 1200px) {
+}
+
+@media screen and (min-width: 992px) and (max-width: 1199px) {
+}
+
+@media screen and (min-width: 768px) and (max-width: 991px) {
+    .list-new .item {
+        width: 50%;
+    }
+}
+
+@media screen and (min-width: 576px) and (max-width: 767px) {
+    .list-new .item {
+        width:50%;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 575px) {
+    .list-new .item {
+        width: 100%;
+    }
+}

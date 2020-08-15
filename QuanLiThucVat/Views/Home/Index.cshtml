@@ -1,0 +1,61 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="~/Content/js/index.js"></script>
+<link href="~/Content/css/index.css" rel="stylesheet" />
+@{
+    List<QuanLiThucVat.Models.ThucVatViewModel> ListHo = ViewBag.ListHo;
+    List<QuanLiThucVat.Models.ThucVatViewModel> ListBo = ViewBag.ListBo;
+}
+<div class="containers">
+    @*<div class="col-sm-10 list-tree"> </div>
+        <div class="col-sm-2 search">
+            <input id="search-input" type="search" class="form-control" placeholder="Nhập tên cây" />
+            <i class="fa fa-search" id="search" aria-hidden="true"></i>
+        </div>*@
+        <h3 name="title">Tra cứu thực vật</h3>
+    <table class="table-fitter">
+        <thead>
+            <tr>
+                <th class="col-md-3">Chọn bộ</th>
+                <th class="col-md-3">Chọn họ</th>
+                <th class="col-md-3">Nhập tên tiếng việt</th>
+                <th class="col-md-3">Nhập tên La tinh</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <select name="bo" class="form-control">
+                        <option value="0">Bất kỳ</option>
+                        @foreach (var item in ListBo)
+                        {
+                            <option value="@item.IDBo">@item.TenBo</option>
+                        }
+
+                    </select>
+                </td>
+                <td>
+                    <select name="ho" class="form-control">
+                        <option value="0">Bất kỳ</option>
+                        @foreach (var item in ListHo)
+                        {
+                            <option value="@item.IDHo">@item.TenHo</option>
+                        }
+                    </select>
+                </td>
+
+                <td><input type="text" name="tentiengviet" class="form-control"></td>
+                <td><input type="text" name="tenlatinh" class="form-control"></td>
+
+            </tr>
+        </tbody>
+    </table>
+    <button type="button" id="btn-apply" class="btn btn-success" style="margin-top:15px;">Tra cứu</button>
+
+
+
+    <div class="partial-view" id="PhanTrang">
+        @Html.Partial("~/Views/Home/_PartialIndex.cshtml")
+    </div>
+</div>

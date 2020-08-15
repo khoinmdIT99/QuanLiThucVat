@@ -1,0 +1,70 @@
+﻿@model PagedList.IPagedList<QuanLiThucVat.Models.TinTucViewModel>
+@using PagedList.Mvc;
+
+<div class="list-new">
+    @foreach (var item in Model)
+    {
+        var DanNhap = "";
+        var tieuDe = "";
+        <div class="item">
+            <a href="@Url.Action("Detail","TinTuc",new { id=item.ID})">
+
+                @if (item.TieuDe.Split(' ').Length < 10)
+                {
+                    <h4 title="@item.TieuDe">@item.TieuDe </h4>
+
+                }
+                else
+                {
+                    string[] arrListStr2 = item.TieuDe.Split(' ');
+                    for (int i = 0; i < 10; i++)
+                    {
+                        tieuDe += arrListStr2[i] + " ";
+                    }
+                    <h4 title="@item.TieuDe">@tieuDe... </h4>
+                }
+
+
+            </a>
+            <a href="@Url.Action("Detail","TinTuc",new { id=item.ID})">
+                <img src="@item.DuongDanHinhAnh" />
+            </a>
+            @if (item.DanNhap.Split(' ').Length < 100)
+            {
+                <p>
+                    @item.DanNhap
+
+                </p>
+            }
+            else
+            {
+                string[] arrListStr = item.DanNhap.Split(' ');
+                for (int i = 0; i < 100; i++)
+                {
+                    DanNhap += arrListStr[i] + " ";
+                }
+
+                <p>@(DanNhap)...</p>
+            }
+        </div>
+    }
+    <div class="clear"></div>
+</div>
+@Html.PagedListPager(Model, page => Url.Action("_PartialNew", "TinTuc", new
+{
+    page = page
+}),
+        PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(new PagedListRenderOptions()
+        {
+            UlElementClasses = new string[] { "pagination pagination-lg" },
+
+            LiElementClasses = new string[] { "noselect" },
+            MaximumPageNumbersToDisplay = 5,
+            LinkToNextPageFormat = "›",
+            LinkToFirstPageFormat = "«",
+            LinkToLastPageFormat = "»",
+            LinkToPreviousPageFormat = "‹",
+            DisplayEllipsesWhenNotShowingAllPageNumbers = false
+        },
+            new AjaxOptions() { UpdateTargetId = "PhanTrang" }))
+

@@ -1,0 +1,108 @@
+﻿
+@model PagedList.IPagedList<QuanLiThucVat.Models.BangXepHangViewModel>
+@using PagedList.Mvc;
+
+@{
+    /**/
+
+    var i = (Model.PageNumber - 1) * 10;
+    var item = ViewBag.item;
+    var keyword= ViewBag.keyword;
+    var tc1 = ViewBag.tc1;
+    var tc2 = ViewBag.tc2;
+    var tc3 = ViewBag.tc3;
+    var tc4 = ViewBag.tc4;
+    var tc5 = ViewBag.tc5;
+    var tc6 = ViewBag.tc6;
+    var tc7 = ViewBag.tc7;
+    var tc8 = ViewBag.tc8;
+    var tc9 = ViewBag.tc9;
+    var tc10 = ViewBag.tc10;
+    var tc11 = ViewBag.tc11;
+
+}
+
+<div class="tables">
+    <div class="bs-example widget-shadow" data-example-id="contextual-table">
+        <table class="table" id="tabletest">
+            <thead>
+                <tr>
+                    <th class="col-md-1">STT</th>
+                    <th class="col-md-2">Tên thực vật</th>
+                    <th>TC1</th>
+                    <th>TC2</th>
+                    <th >TC3</th>
+                    <th>TC4</th>
+                    <th>TC5</th>
+                    <th>TC6</th>
+                    <th>TC7</th>
+                    <th>TC8</th>
+                    <th>TC9</th>
+                    <th>TC10</th>
+                    <th >TC11</th>
+                    <th class="col-md-2">Tổng điểm</th>
+                    <th class="col-md-2">Xếp hạng</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var subItem in Model)
+                {
+                    <tr id="@subItem.IDThucVat">
+                        <th scope="row">@(++i)</th>
+                        <td name="nameTV">@subItem.TenThucVat</td>
+                        <td name="LuongNuocTrongLa">@subItem.LuongNuocTrongLa</td>
+                        <td name="LuongNuocTrongVo">@subItem.LuongNuocTrongVo</td>
+                        <td name="LuongTroThoTrongLa">@subItem.LuongTroThoTrongLa</td>
+                        <td name="LuongTroThoTrongVo">@subItem.LuongTroThoTrongVo</td>
+                        <td name="ThoiGianChayTrenLa">@subItem.ThoiGianChayTrenLa</td>
+                        <td name="ThoiGianChayTrenVo">@subItem.ThoiGianChayTrenVo</td>
+                        <td name="DoDayLa">@subItem.DoDayLa</td>
+                        <td name="DoDayVo">@subItem.DoDayVo</td>
+                        <td name="KhaNangTaiSinh">@subItem.KhaNangTaiSinh</td>
+                        <td name="KhaNangSinhTruong">@subItem.KhaNangSinhTruong</td>
+                        <td name="GiaTriKinhTe">@subItem.GiaTriKinhTe</td>
+                        <td name="TongDiem">@subItem.TongDiem</td>
+                        @if (item == 1)
+                        {
+                            <th class="col-md-1">@subItem.XepHang1</th>
+                        }
+                        else if (item == 2)
+                        {
+                            <th class="col-md-1">@subItem.XepHang2</th>
+                        }
+                        else
+                        {
+                            <th class="col-md-1">@subItem.XepHang3</th>
+                        }
+
+
+
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@Html.PagedListPager(Model, page => Url.Action("_PartialCacPhuongPhap", "BangXepHang", new { page = page, item = item, keyword = keyword, tc1 = tc1,
+    tc2 = tc2, tc3 = tc3, tc4 = tc4, tc5 = tc5, tc6 = tc6, tc7 = tc7, tc8 = tc8, tc9 = tc9, tc10 = tc10,tc11=tc11 }),
+              PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(new PagedListRenderOptions()
+{
+    UlElementClasses = new string[] { "pagination pagination-lg" },
+
+                  LiElementClasses = new string[] { "noselect" },
+                  MaximumPageNumbersToDisplay = 5,
+                  LinkToNextPageFormat = "›",
+                  LinkToFirstPageFormat = "«",
+                  LinkToLastPageFormat = "»",
+                  LinkToPreviousPageFormat = "‹",
+                  DisplayEllipsesWhenNotShowingAllPageNumbers = false
+              },
+                  new AjaxOptions() { UpdateTargetId = "PhanTrang" }))
+
+
+
+
+

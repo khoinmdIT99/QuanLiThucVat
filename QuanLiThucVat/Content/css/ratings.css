@@ -1,0 +1,26 @@
+﻿.table-ratings{
+    margin-top: 30px;
+
+}
+    .table-ratings, .table-ratings thead tr th, .table-ratings tbody tr td {
+        border: 1px solid #646262;
+    }
+    .table-ratings thead th {
+        font-weight: bold;
+        color: #006600
+    }
+    .table-ratings tbody tr td a {
+        cursor: pointer;
+        color: #555555;
+    }
+        .table-ratings tbody tr td a:hover {
+            color: #981717;
+        }
+input[type="radio"], input[type="checkbox"] {
+    /*margin: 0px !important;
+    margin-left: -20px !important;*/
+}
+.list-group-item label
+{
+    font-weight:bold;
+}

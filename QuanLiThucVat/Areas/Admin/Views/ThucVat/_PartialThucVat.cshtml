@@ -1,0 +1,79 @@
+﻿
+@model PagedList.IPagedList<QuanLiThucVat.Models.ThucVatViewModel>
+@using PagedList.Mvc;
+
+@{
+    var i = (Model.PageNumber - 1) * 10;
+    var keyword = ViewBag.keyword;
+}
+<div class="tables">
+    <div class="bs-example widget-shadow" data-example-id="contextual-table">
+        <table class="table" id="tabletest">
+            <thead>
+                <tr>
+                    <th class="col-md-1">STT</th>
+                    <th class="col-md-1">Hình ảnh</th>
+                    <th class="col-md-2">Tên Việt Nam</th>
+                    <th class="col-md-2">Tên La Tinh</th>
+                    <th class="col-md-2">Thuộc họ</th>
+                    <th class="col-md-2">Chức năng</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                <tr id="@item.ID">
+                    <th scope="row">@(++i)</th>
+                    <td name="path"><img width="50" height="50" src="@item.DuongDanHInhAnh" /></td>
+                    <td name="nameTV">@item.TenVietNam</td>
+                    <td name="nameLT">@item.TenLaTinh</td>
+                    <td name="IDBo" value="@item.IDHo">@item.TenHo</td>
+                    <td name="description" style="display:none">@item.MoTa</td>
+                    <td name="growth" style="display:none" value="@item.IDKhaNangSinhTruong">@item.KhaNangSinhTruong</td>
+                    <td name="reborn" style="display:none" value="@item.IDKhaNangTaiSinh">@item.KhaNangTaiSinh</td>
+                    <td name="economy" style="display:none" value="@item.IDGiaTriKinhTe">@item.GiaTriKinhTe</td>
+                    <td name="LuongNuocTrongLa" style="display:none">@item.LuongNuocTrongLa</td>
+                    <td name="LuongNuocTrongVo" style="display:none">@item.LuongNuocTrongVo</td>
+                    <td name="LuongTroThoTrongLa" style="display:none">@item.LuongTroThoTrongLa</td>
+                    <td name="LuongTroThoTrongVo" style="display:none">@item.LuongTroThoTrongVo</td>
+                    <td name="ThoiGianChayTrenLa" style="display:none">@item.ThoiGianChayTrenLa</td>
+                    <td name="ThoiGianChayTrenVo" style="display:none">@item.ThoiGianChayTrenVo</td>
+                    <td name="DoDayLa" style="display:none">@item.DoDayLa</td>
+                    <td name="DoDayVo" style="display:none">@item.DoDayVo</td>
+
+                    <td>
+                        <a id="btn-edit" data-toggle="modal" data-target="#myModal-edit" title="Sửa">
+                            <span class="glyphicon glyphicon-edit"></span>
+                        </a>
+                        <a id="btn-delete" data-toggle="modal" data-target="#myModal-delete" title="Xóa">
+                            <span class="glyphicon glyphicon-trash"></span>
+                        </a>
+                    </td>
+                </tr>
+                }
+
+
+
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@Html.PagedListPager(Model, page => Url.Action("_PartialThucVat", "ThucVat", new { page = page, keyword = keyword }),
+        PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(new PagedListRenderOptions()
+        {
+            UlElementClasses = new string[] { "pagination pagination-lg" },
+
+            LiElementClasses = new string[] { "noselect" },
+            MaximumPageNumbersToDisplay = 5,
+            LinkToNextPageFormat = "›",
+            LinkToFirstPageFormat = "«",
+            LinkToLastPageFormat = "»",
+            LinkToPreviousPageFormat = "‹",
+            DisplayEllipsesWhenNotShowingAllPageNumbers = false
+        },
+            new AjaxOptions() { UpdateTargetId = "PhanTrang" }))
+
+
+

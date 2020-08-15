@@ -1,0 +1,131 @@
+﻿.table-fitter 
+{
+background:white;
+width:100%;
+}
+    .table-fitter thead tr th, .table-fitter tbody tr td {
+        border: 1px solid #ddd;
+    }
+    .table-fitter thead tr th {
+        font-weight: bold;
+        color: #3b3434;
+   
+    }
+        .table-fitter thead tr th, .table-fitter tbody tr td {
+            padding:5px;
+        }
+
+.content .search {
+    padding: 0px;
+    position: relative;
+}
+
+    .content .search .fa-search {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        right: 15px;
+        cursor: pointer;
+    }
+
+.list-tree h1 {
+    text-transform: uppercase;
+    font-size: 16px;
+    color: #0b7136;
+    height: 33px;
+    line-height: 33px;
+    font-weight: bold;
+}
+
+.content .list-item {
+    margin: 30px -20px 0px -20px;
+}
+
+.list-item .item {
+    width: 25%;
+    float: left;
+    padding: 20px;
+    height: 400px;
+}
+
+.item a {
+    cursor: pointer;
+}
+
+    .item a img {
+        width: 100%;
+        height: 230px;
+    }
+
+        .item a img:hover {
+            opacity: 0.7;
+        }
+
+    .item a h2 {
+        font-style: italic;
+        font-size: 18px;
+        text-align: center;
+        text-transform: uppercase;
+        font-weight: bold;
+        color: #3b3434;
+        padding: 15px 5px;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+        color: #05421f;
+    }
+
+        .item a h2:hover {
+            color: #006600
+        }
+
+.item p {
+    font-size: 13px;
+    color: #555555;
+    padding: 0 10px;
+    font-style: oblique;
+}
+h3[name=title] {
+    width: 100%;
+    font-family: Arial,Helvetica,sans-serif;
+    color: #0b7136;
+    font-size: 15pt;
+    font-weight: Bold;
+    margin-top: 12px;
+    margin-bottom: 20px;
+    margin-right: 10px;
+    margin-left: 10px;
+    text-align: left;
+    /*border-top-style: none;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-bottom-color: #0b7136;*/
+    padding: 5px 0px;
+}
+@media screen and (min-width: 1200px) {
+}
+
+@media screen and (min-width: 992px) and (max-width: 1199px) {
+ 
+}
+
+@media screen and (min-width: 768px) and (max-width: 991px) {
+    .list-item .item {
+        width: 33.33%;
+    }
+
+}
+
+@media screen and (min-width: 576px) and (max-width: 767px) {
+    .list-item .item {
+        width: 50%;
+    }
+   
+}
+
+@media screen and (min-width: 320px) and (max-width: 575px) {
+    .list-item .item {
+        width: 100%;
+    }
+   
+}

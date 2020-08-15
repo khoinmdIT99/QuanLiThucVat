@@ -1,0 +1,110 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+@model QuanLiThucVat.Models.DashBoardViewModel
+<style>
+    .figures {
+        padding: 20px;
+    }
+
+        .figures .figures-icon {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .figures .has-border {
+            border-right: 1px solid #dddcdc;
+        }
+
+    .figures-icon i {
+        font-size: 80px;
+        color: #555;
+    }
+
+    .figures-icon > span {
+        display: block;
+    }
+
+    .figures-icon .number {
+        padding-top: 10px;
+        font-size: 35px;
+        color: #016cbb;
+    }
+
+    .figures-icon .item {
+        font-size: 20px;
+        color: #555;
+    }
+
+    .figures-icon p {
+        display: inline-block;
+        font-size: 40px;
+        color: #016cbb;
+        margin: 0px;
+        padding-top: 10px;
+    }
+
+    span[name=number-contact] span {
+        display: inline-block;
+        font-size: 50px;
+        color: #016cbb;
+    }
+
+    span[name=number-apply] span {
+        display: inline-block;
+        font-size: 40px;
+        color: #016cbb;
+    }
+</style>
+<script>
+    $(document).ready(function () {
+        $(".figures .figures-icon .number").each(function () {
+            $(this).prop('Counter', 0).animate({
+                Counter: $(this).text()
+            }, {
+                    duration: 2000,
+                    easing: 'swing',
+                    step: function (now) {
+                        $(this).text(Math.ceil(now));
+                    }
+                });
+        });
+    })
+</script>
+<div class="figures">
+
+    <div class="row">
+
+        <div class="col-md-4 figures-icon has-border">
+            <i class="fa fa-tachometer"></i>
+            <span class="number" name="number-user">@Model.BoNumber</span>
+            <span class="item">Bộ</span>
+        </div>
+        <div class="col-md-4 figures-icon has-border">
+            <i class="fa fa-crosshairs"></i>
+            <span class="number" name="number-user">@Model.HoNumber</span>
+            <span class="item">Họ</span>
+        </div>
+        <div class="col-md-4 figures-icon ">
+            <i class="fa fa-tree"></i>
+            <span class="number" name="number-user">@Model.TreeNumber</span>
+            <span class="item">Thực vật</span>
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-md-4 figures-icon has-border">
+            <i class="fa fa-newspaper-o"></i>
+            <span class="number" name="number-user">@Model.NewNumber</span>
+            <span class="item">Tin tức</span>
+        </div>
+        <div class="col-md-4 figures-icon">
+            <i class="fa fa-user"></i>
+            <span class="number" name="number-user">@Model.UserNumber</span>
+            <span class="item">Người dùng</span>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,78 @@
+﻿
+@model PagedList.IPagedList<QuanLiThucVat.Models.NguoiDungViewModel>
+@using PagedList.Mvc;
+
+@{
+    var i = (Model.PageNumber - 1) * 10;
+    var keyword = ViewBag.keyword;
+}
+<div class="tables">
+    <div class="bs-example widget-shadow" data-example-id="contextual-table">
+        <table class="table" id="tabletest">
+            <thead>
+                <tr>
+                    <th class="col-md-1">STT</th>
+                    <th class="col-md-1">Hình ảnh</th>
+                    <th class="col-md-2">Email</th>
+                    <th class="col-md-2">Họ và tên</th>
+                    <th class="col-md-1">Số điện thoại</th>
+                    <th class="col-md-2">Giới tính </th>
+                    <th class="col-md-2">Ngày sinh </th>
+                    <th class="col-md-2">Chức năng </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    DateTime? time = item.NgaySinh;
+
+                    <tr id="@item.ID">
+                        <th scope="row">@(++i)</th>
+                        <td name="path"><img width="50" height="50" src="@item.DuongDanHInhAnh" /></td>
+                        <td name="email">@item.Email</td>
+                        <td name="fullname">@item.HoTen</td>
+                        <td name="phone">@item.SoDienThoai</td>
+                        <td name="sex" value="@(item.GioiTinh!=null?item.GioiTinh.Value.ToString():null)">@(item.GioiTinh == true ? "nam" : "nữ")</td>
+                        <td name="birthday">@(time != null ? time.Value.ToString("dd/MM/yyyy") : null)</td>
+                        <td name="address" style="display:none">@item.DiaChi</td>
+
+                        <td>
+                            <a id="btn-edit" data-toggle="modal" data-target="#myModal-edit" title="Sửa">
+                                <span class="glyphicon glyphicon-edit"></span>
+                            </a>
+                            @if (item.LaQuanTriVienCapCao != true)
+                            {
+                                <a id="btn-delete" data-toggle="modal" data-target="#myModal-delete" title="Xóa">
+                                    <span class="glyphicon glyphicon-trash"></span>
+                                </a>
+                            }
+
+                        </td>
+                    </tr>
+                }
+
+
+
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@Html.PagedListPager(Model, page => Url.Action("_PartialNguoiDung", "NguoiDung", new { page = page, keyword = keyword }),
+        PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(new PagedListRenderOptions()
+        {
+            UlElementClasses = new string[] { "pagination pagination-lg" },
+
+            LiElementClasses = new string[] { "noselect" },
+            MaximumPageNumbersToDisplay = 5,
+            LinkToNextPageFormat = "›",
+            LinkToFirstPageFormat = "«",
+            LinkToLastPageFormat = "»",
+            LinkToPreviousPageFormat = "‹",
+            DisplayEllipsesWhenNotShowingAllPageNumbers = false
+        },
+            new AjaxOptions() { UpdateTargetId = "PhanTrang" }))
+
+
+
+

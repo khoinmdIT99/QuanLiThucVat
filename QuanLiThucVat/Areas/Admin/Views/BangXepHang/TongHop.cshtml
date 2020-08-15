@@ -1,0 +1,55 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+<script src="~/Areas/Admin/Content/js/script/common.js"></script>
+<script src="~/Areas/Admin/Content/js/script/BangXepHang.js"></script>
+<script src="~/Areas/Admin/Content/js/script/TongHop.js"></script>
+<script>
+
+</script>
+<div class="main-page">
+    <div class="button_set_one agile_info_shadow">
+        <div class="row">
+            <div class="col-xs-7">
+            </div>
+            <div class="col-xs-3">
+                <input type="text" class="form-control" id="search-input" placeholder="Từ khóa..." autocomplete="off" style="height:40px">
+            </div>
+            <div class="col-xs-2">
+                <button id="btn-search" type="button" class="btn btn-primary btn-flat">   Tìm kiếm </button>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-three widget-shadow" ">
+            <form class="form-horizontal">
+                <div class="form-group">
+                    <label for="checkbox-inline" class="col-sm-12">Chọn các tiêu chí</label>
+                    <div class="col-sm-12">
+                        <div class="checkbox-inline"><input type="checkbox" name="tc1"> Hàm lượng nước trong lá</div>
+                        <div class="checkbox-inline"><input type="checkbox" name="tc2"> Hàm lượng nước trong vỏ</div>
+                        <div class="checkbox-inline"><input type="checkbox" name="tc3">  Lượng tro thô trong lá</div>
+                        <div class="checkbox-inline"><input type="checkbox" name="tc4">  Lượng tro thô trong vỏ</div>
+                        <div class="checkbox-inline"><input type="checkbox" name="tc5"> Thời gian cháy trên lá</div>
+                        <div class="checkbox-inline"><input type="checkbox" name="tc6"> Thời gian cháy trên vỏ</div>
+                        <div class="checkbox-inline"><input type="checkbox" name="tc7"> Độ dày lá</div>
+                        <div class="checkbox-inline"><input type="checkbox" name="tc8"> Độ dày vỏ</div>
+                        <div class="checkbox-inline"><input type="checkbox" name="tc9"> Khả năng tái sinh</div>
+                        <div class="checkbox-inline"><input type="checkbox" name="tc10">Khả năng sinh trưởng</div>
+                        <div class="checkbox-inline"><input type="checkbox" name="tc11">Giá trị kinh tế</div>
+
+                    </div>
+                </div>
+                <button type="button" id="btn-apply" class="btn btn-default">Áp dụng</button>
+
+            </form>
+
+
+        </div>
+    </div>
+
+    <div class="partial-view" id="PhanTrang">
+        @Html.Partial("~/Areas/Admin/Views/BangXepHang/_PartialTongHop.cshtml")
+    </div>
+</div>

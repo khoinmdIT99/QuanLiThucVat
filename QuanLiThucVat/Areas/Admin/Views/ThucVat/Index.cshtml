@@ -1,0 +1,442 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+<script src="~/Areas/Admin/Content/js/script/common.js"></script>
+<script src="~/Areas/Admin/Content/js/script/ThucVat.js"></script>
+@{
+    List<QuanLiThucVat.Models.ThucVatViewModel> ListKhaNangSinhTruong = ViewBag.ListKhaNangSinhTruong;
+    List<QuanLiThucVat.Models.ThucVatViewModel> ListKhaNangTaiSinh = ViewBag.ListKhaNangTaiSinh;
+    List<QuanLiThucVat.Models.ThucVatViewModel> ListGiaTriKinhTe = ViewBag.ListGiaTriKinhTe;
+    List<QuanLiThucVat.Models.ThucVatViewModel> ListHo = ViewBag.ListHo;
+
+}
+<div class="main-page">
+    <div class="button_set_one agile_info_shadow">
+        <div class="row">
+            <div class="col-xs-7">
+                <button type="button" id="btn-add" class="btn btn-primary" data-toggle="modal" data-target="#myModal-create">
+                    <i class="fa fa-plus" aria-hidden="true"></i>  Tạo thêm thực vật
+                </button>
+            </div>
+
+            @*@<div class="search-box">
+                    <form class="input">
+                        <input class="sb-search-input input__field--madoka" placeholder="Search..." type="search" id="input-31" />
+                        <label class="input__label" for="input-31">
+                            <svg class="graphic" width="100%" height="100%" viewBox="0 0 404 77" preserveAspectRatio="none">
+                                <path d="m0,0l404,0l0,77l-404,0l0,-77z" />
+                            </svg>
+                        </label>
+                    </form>
+                </div>*@
+            <div class="col-xs-3">
+                <input type="text" class="form-control" id="search-input" placeholder="Từ khóa..." autocomplete="off" style="height:40px">
+            </div>
+            <div class="col-xs-2">
+                <button id="btn-search" type="button" class="btn btn-primary btn-flat">   Tìm kiếm </button>
+            </div>
+        </div>
+
+
+
+    </div>
+    <div class="partial-view" id="PhanTrang">
+        @Html.Partial("~/Areas/Admin/Views/ThucVat/_PartialThucVat.cshtml")
+    </div>
+
+</div>
+<!-- Modal for create -->
+<div id="myModal-create" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title"> Tạo thêm thực vật</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <label for="name" class="col-sm-3 control-label">Tên Tiếng Việt</label>
+                        <div class="col-sm-8">
+                            <input type="text" name="nameTV" class="form-control1" id="focusedinput" placeholder="">
+                            <div class="col-sm-12">
+                                <p class="help-block"></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="name" class="col-sm-3 control-label">Tên LaTinh</label>
+                        <div class="col-sm-8">
+                            <input type="text" name="nameLT" class="form-control1" id="focusedinput" placeholder="">
+                            <div class="col-sm-12">
+                                <p class="help-block"></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="name" class="col-sm-3 control-label">Lượng nước trong lá (%)</label>
+                        <div class="col-sm-8">
+                            <input type="text" name="LuongNuocTrongLa" class="form-control1" id="focusedinput" placeholder="">
+                            <div class="col-sm-12">
+                                <p class="help-block"></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="name" class="col-sm-3 control-label">Lượng nước trong vỏ (%)</label>
+                        <div class="col-sm-8">
+                            <input type="text" name="LuongNuocTrongVo" class="form-control1" id="focusedinput" placeholder="">
+                            <div class="col-sm-12">
+                                <p class="help-block"></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="name" class="col-sm-3 control-label">Lượng tro thô trong lá (%)</label>
+                        <div class="col-sm-8">
+                            <input type="text" name="LuongTroThoTrongLa" class="form-control1" id="focusedinput" placeholder="">
+                            <div class="col-sm-12">
+                                <p class="help-block"></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="name" class="col-sm-3 control-label">Lượng tro thô trong vỏ (%)</label>
+                        <div class="col-sm-8">
+                            <input type="text" name="LuongTroThoTrongVo" class="form-control1" id="focusedinput" placeholder="">
+                            <div class="col-sm-12">
+                                <p class="help-block"></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="name" class="col-sm-3 control-label">Thời gian cháy trên lá (s)</label>
+                        <div class="col-sm-8">
+                            <input type="text" name="ThoiGianChayTrenLa" class="form-control1" id="focusedinput" placeholder="">
+                            <div class="col-sm-12">
+                                <p class="help-block"></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="name" class="col-sm-3 control-label">Thời gian cháy trên vỏ (s)</label>
+                        <div class="col-sm-8">
+                            <input type="text" name="ThoiGianChayTrenVo" class="form-control1" id="focusedinput" placeholder="">
+                            <div class="col-sm-12">
+                                <p class="help-block"></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="name" class="col-sm-3 control-label">Độ dày lá (mm)</label>
+                        <div class="col-sm-8">
+                            <input type="text" name="DoDayLa" class="form-control1" id="focusedinput" placeholder="">
+                            <div class="col-sm-12">
+                                <p class="help-block"></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="name" class="col-sm-3 control-label">Độ dày vỏ (mm)</label>
+                        <div class="col-sm-8">
+                            <input type="text" name="DoDayVo" class="form-control1" id="focusedinput" placeholder="">
+                            <div class="col-sm-12">
+                                <p class="help-block"></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="name" class="col-sm-3 control-label">Khả năng sinh trưởng</label>
+                        <div class="col-sm-8">
+                            <select class="form-control" name="growth">
+                                @if (ListKhaNangSinhTruong != null)
+                                {
+                                    foreach (var item in ListKhaNangSinhTruong)
+                                    {
+                                        <option value="@item.IDKhaNangSinhTruong">@item.KhaNangSinhTruong</option>
+                                    }
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="name" class="col-sm-3 control-label">Khả năng tái sinh</label>
+                        <div class="col-sm-8">
+                            <select class="form-control" name="reborn">
+                                @if (ListKhaNangTaiSinh != null)
+                                {
+                                    foreach (var item in ListKhaNangTaiSinh)
+                                    {
+                                        <option value="@item.IDKhaNangTaiSinh">@item.KhaNangTaiSinh</option>
+                                    }
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="name" class="col-sm-3 control-label">Giá trị kinh tế</label>
+                        <div class="col-sm-8">
+                            <select class="form-control" name="economy">
+                                @if (ListGiaTriKinhTe != null)
+                                {
+                                    foreach (var item in ListGiaTriKinhTe)
+                                    {
+                                        <option value="@item.IDGiaTriKinhTe">@item.GiaTriKinhTe</option>
+                                    }
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="name" class="col-sm-3 control-label">Thuộc họ</label>
+                        <div class="col-sm-8">
+                            <select class="form-control" name="IDBo">
+                                @if (ListHo != null)
+                                {
+                                    foreach (var item in ListHo)
+                                    {
+                                        <option value="@item.IDHo">@item.TenHo</option>
+                                    }
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="name" class="col-sm-3 control-label">Mô tả chung</label>
+                        <div class="col-sm-8">
+                            <textarea class="form-control" name="description" style="resize:none" rows="5"></textarea>
+                            <div class="col-sm-12">
+                                <p class="help-block"></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="name" class="col-sm-3 control-label">Hình ảnh</label>
+                        <div class="col-sm-8">
+                            <input type="file" id="file" class="form-control" />
+                            <img src="#" name="view-file" width="100" height="100" style="display:none;margin:15px 0px;" />
+                        </div>
+
+                    </div>
+                    <label for="name" class="col-sm-3 control-label"></label>
+                    <div class="col-sm-offset-2">
+                        <button id="btn-create" type="button" class="btn btn-default">Tạo</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Hủy</button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>
+<!-- Modal for edit -->
+<div id="myModal-edit" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Chỉnh sửa thông tin thực vật</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <label for="name" class="col-sm-3 control-label">Tên Tiếng Việt</label>
+                        <div class="col-sm-8">
+                            <input type="text" name="nameTV" class="form-control1" id="focusedinput" placeholder="">
+                            <div class="col-sm-12">
+                                <p class="help-block"></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="name" class="col-sm-3 control-label">Tên LaTinh</label>
+                        <div class="col-sm-8">
+                            <input type="text" name="nameLT" class="form-control1" id="focusedinput" placeholder="">
+                            <div class="col-sm-12">
+                                <p class="help-block"></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="name" class="col-sm-3 control-label">Lượng nước trong lá (%)</label>
+                        <div class="col-sm-8">
+                            <input type="text" name="LuongNuocTrongLa" class="form-control1" id="focusedinput" placeholder="">
+                            <div class="col-sm-12">
+                                <p class="help-block"></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="name" class="col-sm-3 control-label">Lượng nước trong vỏ (%)</label>
+                        <div class="col-sm-8">
+                            <input type="text" name="LuongNuocTrongVo" class="form-control1" id="focusedinput" placeholder="">
+                            <div class="col-sm-12">
+                                <p class="help-block"></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="name" class="col-sm-3 control-label">Lượng tro thô trong lá (%)</label>
+                        <div class="col-sm-8">
+                            <input type="text" name="LuongTroThoTrongLa" class="form-control1" id="focusedinput" placeholder="">
+                            <div class="col-sm-12">
+                                <p class="help-block"></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="name" class="col-sm-3 control-label">Lượng tro thô trong vỏ (%)</label>
+                        <div class="col-sm-8">
+                            <input type="text" name="LuongTroThoTrongVo" class="form-control1" id="focusedinput" placeholder="">
+                            <div class="col-sm-12">
+                                <p class="help-block"></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="name" class="col-sm-3 control-label">Thời gian cháy trên lá (s)</label>
+                        <div class="col-sm-8">
+                            <input type="text" name="ThoiGianChayTrenLa" class="form-control1" id="focusedinput" placeholder="">
+                            <div class="col-sm-12">
+                                <p class="help-block"></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="name" class="col-sm-3 control-label">Thời gian cháy trên vỏ (s)</label>
+                        <div class="col-sm-8">
+                            <input type="text" name="ThoiGianChayTrenVo" class="form-control1" id="focusedinput" placeholder="">
+                            <div class="col-sm-12">
+                                <p class="help-block"></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="name" class="col-sm-3 control-label">Độ dày lá (mm)</label>
+                        <div class="col-sm-8">
+                            <input type="text" name="DoDayLa" class="form-control1" id="focusedinput" placeholder="">
+                            <div class="col-sm-12">
+                                <p class="help-block"></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="name" class="col-sm-3 control-label">Độ dày vỏ (mm)</label>
+                        <div class="col-sm-8">
+                            <input type="text" name="DoDayVo" class="form-control1" id="focusedinput" placeholder="">
+                            <div class="col-sm-12">
+                                <p class="help-block"></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="name" class="col-sm-3 control-label">Khả năng sinh trưởng</label>
+                        <div class="col-sm-8">
+                            <select class="form-control" name="growth">
+                                @if (ListKhaNangSinhTruong != null)
+                                {
+                                    foreach (var item in ListKhaNangSinhTruong)
+                                    {
+                                        <option value="@item.IDKhaNangSinhTruong">@item.KhaNangSinhTruong</option>
+                                    }
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="name" class="col-sm-3 control-label">Khả năng tái sinh</label>
+                        <div class="col-sm-8">
+                            <select class="form-control" name="reborn">
+                                @if (ListKhaNangTaiSinh != null)
+                                {
+                                    foreach (var item in ListKhaNangTaiSinh)
+                                    {
+                                        <option value="@item.IDKhaNangTaiSinh">@item.KhaNangTaiSinh</option>
+                                    }
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="name" class="col-sm-3 control-label">Giá trị kinh tế</label>
+                        <div class="col-sm-8">
+                            <select class="form-control" name="economy">
+                                @if (ListGiaTriKinhTe != null)
+                                {
+                                    foreach (var item in ListGiaTriKinhTe)
+                                    {
+                                        <option value="@item.IDGiaTriKinhTe">@item.GiaTriKinhTe</option>
+                                    }
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="name" class="col-sm-3 control-label">Thuộc họ</label>
+                        <div class="col-sm-8">
+                            <select class="form-control" name="IDBo">
+                                @if (ListHo != null)
+                                {
+                                    foreach (var item in ListHo)
+                                    {
+                                        <option value="@item.IDHo">@item.TenHo</option>
+                                    }
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="name" class="col-sm-3 control-label">Mô tả chung</label>
+                        <div class="col-sm-8">
+                            <textarea class="form-control" name="description" style="resize:none" rows="5"></textarea>
+                            <div class="col-sm-12">
+                                <p class="help-block"></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="name" class="col-sm-3 control-label">Hình ảnh</label>
+                        <div class="col-sm-9">
+                            <input type="file" id="file-edit" class="form-control" style="display:none" />
+                            <img src="#" name="view-file-edit" width="100" height="100" style="margin:15px 0px;cursor:pointer" />
+                        </div>
+                    </div>
+                    <label for="name" class="col-sm-3 control-label"></label>
+                    <div class="col-sm-offset-2">
+                        <button type="button" id="save-edit" class="btn btn-default">Lưu</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Hủy</button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>
+<!-- Modal for delete -->
+
+<div id="myModal-delete" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <a href="#" data-dismiss="modal" aria-hidden="true" class="close">×</a>
+                <h3>Xác nhận</h3>
+            </div>
+            <div class="modal-body">
+                <p>Bạn có chắc chắn muốn xóa không?</p>
+            </div>
+            <div class="modal-footer">
+                <a href="#" id="btnYes" class="btn danger">Có</a>
+                <a href="#" data-dismiss="modal" aria-hidden="true" class="btn secondary">Không</a>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+

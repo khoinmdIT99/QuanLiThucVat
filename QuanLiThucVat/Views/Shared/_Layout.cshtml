@@ -1,0 +1,99 @@
+﻿
+<link href="~/Areas/Admin/Content/css/font-awesome.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+<script src="~/Areas/Admin/Content/js/jquery-1.11.1.min.js"></script>
+<link href="~/Areas/Admin/Content/css/bootstrap.css" rel='stylesheet' type='text/css' />
+<script src="~/Areas/Admin/Content/js/bootstrap.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+<link href="~/Content/css/style.css" rel="stylesheet" />
+<meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+
+    <div class="wrapper">
+        <div class="container">
+
+        </div>
+        <nav class="navbar navbar-inverse" style="background:#0b7136">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#"></a>
+                </div>
+                <div class="container">
+                    <ul class="nav navbar-nav">
+                        <li><a href="@Url.Action("index","GioiThieu")">Giới thiệu</a></li>
+                        <li><a href="@Url.Action("index","Home")">Tra cứu thực vật</a></li>
+                        <li><a href="@Url.Action("index","TinTuc")">Tin tức</a></li>
+
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" title="Xếp hạng các thực vật có khả năng phòng cháy cao" href="#">Xếp hạng thực vật chống cháy <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="@Url.Action("CacPhuongPhap","XepHang",new { item=1 })">Phương pháp thứ hạng</a></li>
+                                <li><a href="@Url.Action("CacPhuongPhap","XepHang",new { item=2 })">Phương pháp canh tác</a></li>
+                                <li><a href="@Url.Action("CacPhuongPhap","XepHang",new { item=3 })">Phương pháp canh tác cải tiến</a></li>
+                                <li><a href="@Url.Action("index","XepHang")">Tổng hợp 3 phương pháp</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </nav>
+        @*<div class="header">
+
+                <div class="name-page">
+                    <div class="containers">
+
+                        <h1> Quản lí thực vật hỗ trợ phòng cháy rừng</h1>
+                    </div>
+
+                </div>
+
+
+                <div class="navbar">
+                    <div class="containers">
+                        <ul>
+                            <li>
+                                <a href="@Url.Action("index","Home")">
+                                    Trang chủ
+                                </a>
+
+                            </li>
+                            <li>
+                                <a href="@Url.Action("index","XepHang")">
+                                    Bảng xếp hạng
+                                </a>
+                            </li>
+                            <li>
+                                <a>
+                                    Liên hệ
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+
+            </div>*@
+        @*<div class="banner">
+
+            </div>*@
+        <div class="content">
+            @RenderBody()
+
+        </div>
+        <div class="footer">
+            <div class="containers">
+                <h2>Website tra cứu thực vật</h2>
+                <p>Bản quyền thuộc về trường đại học Bách Khoa - Đại Học Đà Nẵng</p>
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>

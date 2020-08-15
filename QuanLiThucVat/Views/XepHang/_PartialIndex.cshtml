@@ -1,0 +1,74 @@
+﻿@model PagedList.IPagedList<QuanLiThucVat.Models.BangXepHangViewModel>
+@using PagedList.Mvc;
+
+@{
+    /**/
+
+    var i = (Model.PageNumber - 1) * 15;
+    var keyword = ViewBag.keyword;
+    var tc1 = ViewBag.tc1;
+    var tc2 = ViewBag.tc2;
+    var tc3 = ViewBag.tc3;
+    var tc4 = ViewBag.tc4;
+    var tc5 = ViewBag.tc5;
+    var tc6 = ViewBag.tc6;
+    var tc7 = ViewBag.tc7;
+    var tc8 = ViewBag.tc8;
+    var tc9 = ViewBag.tc9;
+    var tc10 = ViewBag.tc10;
+    var tc11 = ViewBag.tc11;
+
+}
+<div class="bs-example widget-shadow" data-example-id="bordered-table">
+    <table class="table table-bordered table-ratings">
+        <thead>
+            <tr>
+                <th class="col-md-1">STT</th>
+                <th class="col-md-3">Tên thực vật (tiếng Việt)</th>
+                <th class="col-md-3">Tên thực vật (tiếng La Tinh)</th>
+                <th class="col-md-2">Xếp hạng</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td scope="row">@(++i)</td>
+                <td name="">   <a href="@Url.Action("Detail","Home",new { id=item.IDThucVat})">@item.TenThucVat</a></td>
+                <td name=""><a href="@Url.Action("Detail","Home",new { id=item.IDThucVat})">@item.TenThucVatLaTin</a></td>
+                <td name="">@item.XepHangTong</td>
+            </tr>
+            }
+
+        </tbody>
+    </table>
+</div>
+@Html.PagedListPager(Model, page => Url.Action("_PartialIndex", "XepHang", new
+{
+    page = page,
+    keyword = keyword,
+    tc1 = tc1,
+    tc2 = tc2,
+    tc3 = tc3,
+    tc4 = tc4,
+    tc5 = tc5,
+    tc6 = tc6,
+    tc7 = tc7,
+    tc8 = tc8,
+    tc9 = tc9,
+    tc10 = tc10,
+    tc11 = tc11
+}),
+        PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(new PagedListRenderOptions()
+        {
+            UlElementClasses = new string[] { "pagination pagination-lg" },
+
+            LiElementClasses = new string[] { "noselect" },
+            MaximumPageNumbersToDisplay = 5,
+            LinkToNextPageFormat = "›",
+            LinkToFirstPageFormat = "«",
+            LinkToLastPageFormat = "»",
+            LinkToPreviousPageFormat = "‹",
+            DisplayEllipsesWhenNotShowingAllPageNumbers = false
+        },
+            new AjaxOptions() { UpdateTargetId = "PhanTrang" }))

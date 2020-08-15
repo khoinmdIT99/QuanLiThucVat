@@ -1,0 +1,59 @@
+﻿@model PagedList.IPagedList<QuanLiThucVat.Models.ThucVatViewModel>
+@using PagedList.Mvc;
+@{
+    var tenVietNam= ViewBag.tenVietNam;
+    var tenLaTinh =ViewBag.tenLaTinh;
+    var IDBo =ViewBag.IDBo ;
+    var IDHo = ViewBag.IDHo;
+}
+<div class="list-item">
+    @foreach (var item in Model)
+    {
+        string moTa = "";
+        <div class="item">
+            <a href="@Url.Action("Detail","Home",new { id=item.ID})">
+                <img src="@item.DuongDanHInhAnh" />
+            </a>
+            <a href="@Url.Action("Detail","Home",new { id=item.ID})">
+                <h2 title="@item.TenVietNam">@item.TenVietNam</h2>
+            </a>
+            @if (item.MoTa.Split(' ').Length < 25)
+            {
+                <p>
+                    @item.MoTa
+
+                </p>
+            }
+            else
+
+            {
+                string[] arrListStr = item.MoTa.Split(' ');
+                for (int i = 0; i < 25; i++)
+                {
+                    moTa += arrListStr[i] + " ";
+                }
+
+                <p>@(moTa)...</p>
+            }
+
+        </div>
+    }
+
+
+    <div class="clear"></div>
+</div>
+@Html.PagedListPager(Model, page => Url.Action("_PartialIndex", "Home", new { page = page, tenVietNam = tenVietNam, tenLaTinh=tenLaTinh,
+IDBo=IDBo,IDHo=IDHo}),
+        PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(new PagedListRenderOptions()
+        {
+            UlElementClasses = new string[] { "pagination pagination-lg" },
+
+            LiElementClasses = new string[] { "noselect" },
+            MaximumPageNumbersToDisplay = 5,
+            LinkToNextPageFormat = "›",
+            LinkToFirstPageFormat = "«",
+            LinkToLastPageFormat = "»",
+            LinkToPreviousPageFormat = "‹",
+            DisplayEllipsesWhenNotShowingAllPageNumbers = false
+        },
+            new AjaxOptions() { UpdateTargetId = "PhanTrang" }))

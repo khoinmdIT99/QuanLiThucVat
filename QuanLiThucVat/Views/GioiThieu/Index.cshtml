@@ -1,0 +1,61 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model List<QuanLiThucVat.Models.TinTucViewModel>
+<link href="~/Content/css/introduce.css" rel="stylesheet" />
+<div class="container">
+    <div class="menu-new">
+        <h3>Thông tin mới</h3>
+        <ul>
+            @foreach (var item in Model)
+            {
+                <li><a href="@Url.Action("Detail","TinTuc",new {id=item.ID })">@item.TieuDe</a></li>
+            }
+
+
+            <li> <a href="@Url.Action("index","TinTuc")" name=last>Xem thêm</a> </li>
+
+        </ul>
+    </div>
+    <div class="introduce">
+        <h3>LỜI NÓI ĐẨU</h3>
+        <div class="item">
+            <p>
+                Hàng chục ngàn năm trước đây, rừng bao phủ khoảng một phần hai diện tích bề mặt trái đất.
+                Ngày nay rừng chỉ còn chiếm chưa đầy một phần ba diện tích đất liền (tức là khoảng 4 tỉ ha)
+                và đang thu hẹp lại rất nhanh trên toàn thế giới. Theo thống kê của Qũy quốc tế về bảo vệ thiên nhiên
+                thì hàng tuần có hơn 400.000 ha rừng bị phát quang hoặc bị suy thoái. Cây rừng rất quan trọng đối với lợi ích của hành tinh chúng ta và giữ vai trò
+                thiết yếu trong việc điều hoà các chu trình khí hậu và nước. Lá cây hấp thụ khí carbonic (dioxide carbon),
+                một loại chất khí thải ra khi các nhiên liệu như củi,
+                dầu, xăng bị đốt cháy, góp phần dẫn đến sự thay đổi khí hậu, giúp chúng ta giữ gìn không khí trong lành và làm giảm nguy cơ nóng lên của toàn cầu.
+
+            </p>
+            <img src="~/Content/image/_intro1.jpg" />
+            <span>
+                Dầu cát côn sơn - Dipterocarpus condoensis - Ảnh: Phùng mỹ Trung
+            </span>
+        </div>
+
+        <div class="item">
+            <p>
+                Nguy cơ đối với đa dạng sinh học ngày càng tăng do áp lực dân số tăng lên một cách nhanh chóng cũng như các tiến bộ về khoa học kỹ thuật. Tình trạng bi thảm này lại càng trở nên trầm trọng hơn do việc phân phối của cải trên thế giới không đồng đều, về sự phân hóa giàu nghèo giữa các nước phát triển và kém phát triển, đặc biệt đối với các nước nhiệt đới mà ở đó vốn rất phong phú về loài. Hơn thế nữa sự đe dọa đối với đa dạng sinh học do các yếu tố đơn độc chằng hạn như: mưa axit, khai thác gỗ, săn bắn quá mức. . . cùng phụ họa với nhau làm cho tình trạng ngày càng tồi tệ hơn. Những gì không tốt cho đa dạng sinh học thì cũng chắc chắn là sẽ không tốt cho nhân loại vì con người sống phụ thuộc vào môi trường tự nhiên bao gồm không khí, nước, các nguyên liệu thô, thực phẩm thuốc chữa bệnh cùng hàng loạt các hàng hóa và dịch vụ khác.
+            </p>
+            <img src="~/Content/image/intro3.jpg" />
+            <span> Chờ mẹ kiếm mồi về - Ảnh: Phùng mỹ Trung</span>
+
+        </div>
+        <div class="item">
+            <p>
+                Một số người cảm thấy bi quan vì hiện nay trên thế giới hàng loạt các loài đang bị biến mất, đồng thời cũng cảm thấy lòng tự trọng bị xúc phạm và đòi hỏi cần phải làm một cái gì để ngăn chặn sự hủy diệt đó. Website Sinh vật rừng Việt Nam là một nỗ lực của những con người đang mong muốn góp một phần nhỏ bé của mình vào việc bảo tồn thiên nhiên và nhằm đáp ứng yêu cầu khoa học phục vụ cho việc quản lý nhà nước về công tác nghiên cứu, bảo tồn thiên nhiên Việt Nam và công tác tra cứu, tìm hiểu các loài động, thực vật, côn trùng, các văn bản pháp quy liên quan đến việc quản lý, xây dựng và bảo vệ, phát triển rừng. Rất mong được sự đồng cảm của mọi người.
+
+            </p>
+        </div>
+
+
+    </div>
+</div>
+
+
+

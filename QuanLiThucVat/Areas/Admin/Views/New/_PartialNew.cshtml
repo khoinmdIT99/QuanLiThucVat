@@ -1,0 +1,68 @@
+﻿
+@model PagedList.IPagedList<QuanLiThucVat.Models.TinTucViewModel>
+@using PagedList.Mvc;
+
+@{
+    var i = (Model.PageNumber - 1) * 10;
+    var keyword = ViewBag.keyword;
+}
+<div class="tables">
+    <div class="bs-example widget-shadow" data-example-id="contextual-table">
+        <table class="table" id="tabletest">
+            <thead>
+                <tr>
+                    <th class="col-md-2">STT</th>
+                    <th class="col-md-2">HÌnh ảnh</th>
+                    <th class="col-md-4">Tiêu đề</th>
+                    <th class="col-md-2">Chức năng </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                { 
+                <tr id="@item.ID">
+                    <th scope="row">@(++i)</th>
+                    <td name="path"><img width="50" height="50" src="@item.DuongDanHinhAnh" /></td>
+                    <td name="title">@item.TieuDe</td>
+                    <td name="input"style="display:none" >@item.DanNhap</td>
+                    <td name="content" style="display:none" >@Html.Raw(item.NoiDung)</td>
+
+                    <td>
+                        <a id="btn-edit" data-toggle="modal" data-target="#myModal-edit" title="Sửa">
+                            <span class="glyphicon glyphicon-edit"></span>
+                        </a>
+
+                        <a id="btn-delete" data-toggle="modal" data-target="#myModal-delete" title="Xóa">
+                            <span class="glyphicon glyphicon-trash"></span>
+                        </a>
+
+                    </td>
+                </tr>
+                }
+
+
+
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@Html.PagedListPager(Model, page => Url.Action("_PartialNew", "New", new { page = page, keyword = keyword }),
+        PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(new PagedListRenderOptions()
+        {
+            UlElementClasses = new string[] { "pagination pagination-lg" },
+
+            LiElementClasses = new string[] { "noselect" },
+            MaximumPageNumbersToDisplay = 5,
+            LinkToNextPageFormat = "›",
+            LinkToFirstPageFormat = "«",
+            LinkToLastPageFormat = "»",
+            LinkToPreviousPageFormat = "‹",
+            DisplayEllipsesWhenNotShowingAllPageNumbers = false
+        },
+            new AjaxOptions() { UpdateTargetId = "PhanTrang" }))
+
+
+
+
+
